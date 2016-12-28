@@ -145,11 +145,12 @@ def main():
     sys.exit(1)
 
   # load database
-  for file in os.listdir(str(sys.argv[1])):
+  for file in os.listdir(str(sys.argv[1]) + "/realms/") + \
+    ["../zones.yml", "../default.yml"]:
     if file.endswith(".yml"):
       print("loading", file)
       try:
-        f = open(str(sys.argv[1]) + "/" + file, 'r')
+        f = open(str(sys.argv[1]) + "/realms/" + file, 'r')
         yml += yaml.load(f.read())
         f.close()
       except:
@@ -157,6 +158,7 @@ def main():
         sys.exit(1)
 
   # find zone default parameters
+  default = None
   for item in yml:
     if 'default' in item.keys():
       default = item
