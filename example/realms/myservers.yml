@@ -1,0 +1,32 @@
+---
+
+- host: example.com
+  ip:
+    - 192.0.2.1
+    - 2001:db8::1
+  mx:
+    - name: mail1.example.com
+      prio: 10
+    - name: mail2.example.com
+      prio: 20
+
+- host: www.example.com
+  cname: example.com
+
+- host: mail1.example.com
+  ip:
+    - 192.0.2.55
+    - 2001:db8::55
+  tlsa:
+    - protocol: tcp
+      ports: [ 25, 143, 587 ]
+      usage: dane-ee
+      selector: spki
+      matching_type: sha-256
+      matching: aaaaaaabbbbbbbccccccdddddddeeeeee42
+
+- host: cool.example.com
+  ip:
+    - 2001:db8::10:1
+    - 2001:db8::10:2
+    - 2001:db8::10:3

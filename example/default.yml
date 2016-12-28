@@ -1,0 +1,13 @@
+---
+
+- default:
+  auth_ns: ns1.example.com
+  ns:
+    - ns2.example.net
+    - ns3.example.net
+  admin: admin@example.com
+  refresh: 4h
+  retry: 1h
+  expire: 2w
+  minimum: 1h
+  ttl: 30m

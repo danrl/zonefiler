@@ -1,0 +1,6 @@
+---
+
+- zone: example.com
+
+- reverse_zone: 192.0.2.0/24
+- reverse_zone: 2001:db8::/48
