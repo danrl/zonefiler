@@ -21,7 +21,7 @@ A tool for creating forward and reverse zone files for hosts described in YAML.
 
 ## usage
 
-    ./zonefiler <zonedata-dir> <output-dir>
+    $ ./zonefiler <zonedata-dir> <output-dir>
 
 
 ## example usage
@@ -36,7 +36,7 @@ A tool for creating forward and reverse zone files for hosts described in YAML.
 
 The result:
 
-    danrl@tunafish zonefiler2$ ls output/
+    $ ls output/
     0.0.0.0.8.b.d.0.1.0.0.2.ip6.arpa
     2.0.192.in-addr.arp
     example.coma
