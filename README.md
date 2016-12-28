@@ -38,8 +38,8 @@ The result:
 
     $ ls output/
     0.0.0.0.8.b.d.0.1.0.0.2.ip6.arpa
-    2.0.192.in-addr.arp
-    example.coma
+    2.0.192.in-addr.arpa
+    example.com
 
 
 ### 2.0.192.in-addr.arpa
