@@ -61,11 +61,11 @@ def to_list(v):
 
 def put_head(f, name, zone, serial):
   f.write(";\n" +                                                              \
-          "; zone file for " + name + "\n" +                                    \
+          "; zone file for " + name + "\n" +                                   \
           "; generated " + time.strftime("%Y-%m-%d %H:%M:%S") + "\n" +         \
           ";\n")
   put_rr(f, name, zone['ttl'], "SOA",
-         zone['auth_ns'] + ". " + zone['admin'] + ". " +                       \
+         zone['auth_ns'] + ". " + zone['admin'].replace("@", ".") + ". " +     \
          "( " +                                                                \
               str(serial) + " " +                                              \
               to_sec(zone['refresh']) + " " +                                  \
