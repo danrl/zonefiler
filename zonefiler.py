@@ -103,10 +103,10 @@ def put_rr(f, name, ttl, rrtype, rrvalue):
 def put_extra_rr(f, host, ttl):
   name = host['host']
   if 'txt' in host.keys():
-    put_rr(f, name, ttl, "TXT", host['txt'])
+    put_rr(f, name, ttl, "TXT", '"' + host['txt'] + '"')
   if 'spf' in host.keys():
-    put_rr(f, name, ttl, "SPF", host['spf'])
-    put_rr(f, name, ttl, "TXT", host['spf'])
+    put_rr(f, name, ttl, "SPF", '"' + host['spf'] + '"')
+    put_rr(f, name, ttl, "TXT", '"' + host['spf'] + '"')
   if 'mx' in host.keys():
     for v in host['mx']:
       put_rr(f, name, ttl, "MX", str(v['prio']) + " " + v['name'] + ".")
