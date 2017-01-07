@@ -89,13 +89,13 @@ def put_rr(f, name, ttl, rrtype, rrvalue):
               to_sec(ttl).ljust(conf_justify_ttl) + " " +                      \
               "IN " +                                                          \
               rrtype.ljust(conf_justify_rrtype) + " " +                        \
-              str(v) + "\n")
+              str(v).strip() + "\n")
   else:
     f.write(name.ljust(conf_justify_name) + " " +                              \
             to_sec(ttl).ljust(conf_justify_ttl) + " " +                        \
             "IN " +                                                            \
             rrtype.ljust(conf_justify_rrtype) + " " +                          \
-            str(rrvalue) + "\n")
+            str(rrvalue).strip() + "\n")
 
 
 # --- write extra resource records ------------------------------------------- #
@@ -103,16 +103,16 @@ def put_rr(f, name, ttl, rrtype, rrvalue):
 def put_extra_rr(f, host, ttl):
   name = host['host']
   if 'txt' in host.keys():
-    put_rr(f, name, ttl, "TXT", '"' + host['txt'] + '"')
+    put_rr(f, name, ttl, "TXT", '"' + host['txt'].strip() + '"')
   if 'spf' in host.keys():
-    put_rr(f, name, ttl, "SPF", '"' + host['spf'] + '"')
-    put_rr(f, name, ttl, "TXT", '"' + host['spf'] + '"')
+    put_rr(f, name, ttl, "SPF", '"' + host['spf'].strip() + '"')
+    put_rr(f, name, ttl, "TXT", '"' + host['spf'].strip() + '"')
   if 'mx' in host.keys():
     for v in host['mx']:
-      put_rr(f, name, ttl, "MX", str(v['prio']) + " " + v['name'] + ".")
+      put_rr(f, name, ttl, "MX", str(v['prio']) + " " + v['name'].strip() + ".")
   if 'cname' in host.keys():
     # multiples violates RFC, but bind can do round robin
-    put_rr(f, name, ttl, "CNAME", host['cname'] + ".")
+    put_rr(f, name, ttl, "CNAME", host['cname'].strip() + ".")
   if 'tlsa' in host.keys():
     for v in host['tlsa']:
       for port in to_list(v['ports']):
@@ -121,7 +121,7 @@ def put_extra_rr(f, host, ttl):
                str(conf_tlsa_usage[v['usage']]) + " " +                        \
                str(conf_tlsa_selector[v['selector']]) + " " +                  \
                str(conf_tlsa_matching_type[v['matching_type']]) + " " +        \
-               str(v['matching']))
+               str(v['matching'].strip()))
 
 
 # --- check if hostname is part of zone -------------------------------------- #
