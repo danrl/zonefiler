@@ -113,6 +113,9 @@ def put_extra_rr(f, host, ttl):
   if 'cname' in host.keys():
     # multiples violates RFC, but bind can do round robin
     put_rr(f, name, ttl, "CNAME", host['cname'].strip() + ".")
+  if 'ns' in host.keys():
+    for v in host['ns']:
+      put_rr(f, name, ttl, "NS", v.strip() + ".")
   if 'tlsa' in host.keys():
     for v in host['tlsa']:
       for port in to_list(v['ports']):
